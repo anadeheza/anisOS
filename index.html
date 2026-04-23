@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>AniOS</title>
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="login-screen" class="start-window" onclick="enterSystem()">
+            <div class="card">
+                <h1>Welcome to AniOS</h1>
+                <p>Press "Enter" to continue</p>
+            </div>
+            <div class="arrow-down">▼</div>
+        </div>
+
+        <div id="desktop" style="display:none;">
+            <div id="top-bar">
+                <div id="weather" onclick="showWeather()">☀️</div>                
+                <div id="date-time">
+                    <span id="day">day</span>
+                    <span id="time"></span>
+                </div>
+            </div>
+
+            <div class="shadow-overlay"></div>
+            <div class="container" id="container"></div>
+            
+            <div class="window" id="project-window">
+                <div class="title-bar">Quien es Ana?</div>
+                <p>Busca entre los stickers el que mas te guste :)</p>
+            </div>
+
+            <div id="sticker-container">
+                <div class="sticker" data-target="window-proyectos"><img src="images/arcade.png"><span>Proyectos</span></div>
+                <div class="sticker" data-target="window-music"><img src="images/viajes.png"><span>Music</span></div>                    
+                <div class="sticker" data-target="window-sobre-mi"><img src="images/sobre-mi.png"><span>Sobre Mi</span></div>
+                <div class="sticker" data-target="window-handball"><img src="images/handball.png"><span>Handball</span></div>                    
+                <div class="sticker" data-target="window-poli"><img src="images/poli.png"><span>Poli</span></div>                    
+                <div class="sticker" data-target="window-ingles"><img src="images/ingles.png"><span>Ingles</span></div>                
+            </div>
+
+            <div id="window-manager">
+                <div id="window-clima" class="local-window">
+                    <div class="title-bar">
+                        Clima <button onclick="closeWindow('window-clima')">X</button>
+                    </div>
+                    <div class="content" id="weather-content">
+                        <p>Cargando datos...</p>
+                    </div>
+                </div>
+
+                <div id="window-proyectos" class="local-window">
+                    <div class="title-bar">Proyectos <button onclick="closeWindow('window-proyectos')">X</button></div>
+                    <div class="contentArc">
+                        <p>Contenido...</p>
+                        <a href="https://anadeheza.github.io/arcade/">
+                            <img src="images/screen-arcade.png" alt="Arcade Screen">
+                        </a>
+                    </div>
+                </div>
+                <div id="window-music" class="local-window">
+                    <div class="title-bar">Music <button onclick="closeWindow('window-music')">X</button></div>
+                    <div class="content">
+                        <p>Siempre me gustó mucho la musica, hasta toqué la bateria un tiempo :P</p>
+                        <div class="image-container">
+                            <img src="images/music/rels.jpg" alt="Rels B">
+                            <img src="images/music/cuarteto.jpg" alt="Cuarteto">
+                            <img src="images/music/paulo.jpg" alt="Paulo Londra">
+                            <img src="images/music/wos.png" alt="Wos">
+                        </div>
+                        <p>Esta es mi main playlist, ojalá les guste ▼ </p>
+                        <iframe data-testid="embed-iframe" 
+                                style="border-radius:12px" 
+                                src="https://open.spotify.com/embed/playlist/3p08bohQu5adH7nzsZ9acv?utm_source=generator" 
+                                width="100%" 
+                                height="100%" 
+                                frameBorder="0" a
+                                llowfullscreen="" 
+                                allow="autoplay; 
+                                clipboard-write; 
+                                encrypted-media; 
+                                fullscreen; 
+                                picture-in-picture" 
+                                loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+                <div id="window-sobre-mi" class="local-window">
+                    <div class="title-bar">Sobre mi <button onclick="closeWindow('window-sobre-mi')">X</button></div>
+                    <div class="content">
+                        Contenido...
+                    </div>
+                </div>
+                <div id="window-handball" class="local-window">
+                    <div class="title-bar">Handball <button onclick="closeWindow('window-handball')">X</button></div>
+                    <div class="content">
+                        Contenido...
+                    </div>
+                </div>
+                <div id="window-poli" class="local-window">
+                    <div class="title-bar">Poli <button onclick="closeWindow('window-poli')">X</button></div>
+                    <div class="content">
+                        Contenido...
+                    </div>
+                </div>
+                <div id="window-ingles" class="local-window">
+                    <div class="title-bar">Ingles <button onclick="closeWindow('window-ingles')">X</button></div>
+                    <div class="content">
+                        Contenido...
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+        <script src="scripts.js"></script>
+    </body>
+</html>
