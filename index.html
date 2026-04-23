@@ -29,10 +29,10 @@
             </div>
 
             <div id="bottom-bar">
-                <div id="spotify"> sp </div>
-                <div id="pixel-art"> pa </div>
-                <div id="space-jump"> sj </div>
-                <div id="calcu"> calc </div>
+                <div class="app" data-target="window-spotify">
+                    <img src="images/arcade.png" alt="Music App">
+                </div>
+
             </div>
 
             <div class="shadow-overlay"></div>
@@ -53,6 +53,15 @@
             </div>
 
             <div id="window-manager">
+                <div id="window-spotify" class="local-window">
+                    <div class="title-bar">
+                        Spotify <button onclick="closeWindow('window-spotify')">X</button>
+                    </div>
+                    <div class="content" id="spotify-content">
+                        <p> Cual es tu mood hoy? </p>
+                    </div>
+                </div>
+
                 <div id="window-clima" class="local-window-w">
                     <div class="title-bar">
                         Clima ⋆｡ﾟ☁︎｡⋆𓂃 ོ☼𓂃<button onclick="closeWindow('window-clima')">X</button>
@@ -130,6 +139,8 @@
                         Contenido...
                     </div>
                 </div>
+
+
             </div>
         </div>
 

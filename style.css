@@ -396,3 +396,31 @@ span.near {
     font-size: 15px;
     z-index: 100; 
 }
+
+/*bottom bar*/
+#bottom-bar .app {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+#bottom-bar .app:hover {
+    transform: translateY(-5px); 
+}
+
+.app-active::after {
+    content: "●";
+    display: block;
+    font-size: 10px;
+    text-align: center;
+}
+
+.app img {
+    width: 50px;
+}
+
+
+#window-spotify .content {
+    display: block;
+    overflow-y: auto;
+    max-height: 500px;
+}

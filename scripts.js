@@ -1,6 +1,13 @@
 let spans;
 let systemEntered = false;
 
+const myPlaylists = [
+    { name: "⚡️", id: "3p08bohQu5adH7nzsZ9acv" },
+    { name: "danielito", id: "6nhi8SEgbCLTMnNqkF92E3" },
+    { name: "mix spanish", id: "67dSQxc9WpYYiLljHZDyfR" },
+    { name: "mix 2016", id: "78TWH4kgrhIaLcphZTEXSJ" }
+];
+
 //INICIO:
 function enterSystem() {
     if(systemEntered) return;
@@ -166,16 +173,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+
+//VENTANAS
 window.closeWindow = function(id) {
     const ventana = document.getElementById(id);
-    if (ventana) {
-        ventana.style.display = 'none';
-    } else {
-        alert("Error: No encontré la ventana con ID: " + id);
+    if (!ventana) return;
+
+    ventana.style.display = 'none';
+
+    if (id === 'window-spotify') {
+        const iframe = ventana.querySelector('iframe');
+        if (iframe) iframe.src = "";
     }
+
+    const icon = document.querySelector(`.app[data-target="${id}"]`);
+    if (icon) icon.classList.remove('app-active');
 };
-
-
 
 interact('.local-window .title-bar').draggable({
     listeners: {
@@ -193,3 +206,55 @@ interact('.local-window .title-bar').draggable({
     }
 });
 
+//BOTTOM BAR
+document.querySelectorAll('#bottom-bar .app').forEach(app => {
+    app.addEventListener('click', () => {
+        const targetId = app.getAttribute('data-target');
+        toggleApp(targetId);
+    });
+});
+
+//SPOTIFY
+function minimizeWindow(windowId) {
+    const ventana = document.getElementById(windowId);
+    ventana.style.display = 'none'; 
+}
+
+function openWindow(windowId) {
+    const ventana = document.getElementById(windowId);
+    ventana.style.display = 'block';
+    ventana.style.zIndex = '1000';
+
+
+    const icon = document.querySelector(`.app[data-target="${windowId}"]`);
+    if (icon) icon.classList.add('app-active');
+    
+    if (windowId === 'window-spotify') {
+        const content = ventana.querySelector('.content');
+        const iframe = content.querySelector('iframe');
+
+        if (!iframe) {
+            myPlaylists.forEach(playlist => {
+                const embedHtml = `
+                    <iframe style="border-radius:12px; width:90%; height:400px; margin: 10px;" 
+                            src="https://open.spotify.com/embed/playlist/${playlist.id}?utm_source=generator" 
+                            frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                            loading="lazy">
+                    </iframe>
+                `;
+                content.insertAdjacentHTML('beforeend', embedHtml);
+            });
+        }
+    }
+}
+
+function toggleApp(windowId) {
+    const ventana = document.getElementById(windowId);
+    const icon = document.querySelector(`.app[data-target="${windowId}"]`);
+    
+    if (ventana.style.display === 'block') {
+        minimizeWindow(windowId);
+    } else {
+        openWindow(windowId);
+    }
+}
