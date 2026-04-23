@@ -40,15 +40,15 @@
                 <div class="sticker" data-target="window-proyectos"><img src="images/arcade.png"><span>Proyectos</span></div>
                 <div class="sticker" data-target="window-music"><img src="images/music.png"><span>Music</span></div>                    
                 <div class="sticker" data-target="window-sobre-mi"><img src="images/sobre-mi.png"><span>Sobre Mi</span></div>
-                <div class="sticker" data-target="window-handball"><img src="images/handball.png"><span>Handball</span></div>                    
+                <!--<div class="sticker" data-target="window-handball"><img src="images/handball.png"><span>Handball</span></div> -->                
                 <div class="sticker" data-target="window-poli"><img src="images/viajes.png"><span>Viajes</span></div>                    
                 <div class="sticker" data-target="window-ingles"><img src="images/ingles.png"><span>Ingles</span></div>                
             </div>
 
             <div id="window-manager">
-                <div id="window-clima" class="local-window">
+                <div id="window-clima" class="local-window-w">
                     <div class="title-bar">
-                        Clima <button onclick="closeWindow('window-clima')">X</button>
+                        Clima ⋆｡ﾟ☁︎｡⋆𓂃 ོ☼𓂃<button onclick="closeWindow('window-clima')">X</button>
                     </div>
                     <div class="content" id="weather-content">
                         <p>Cargando datos...</p>
@@ -56,10 +56,10 @@
                 </div>
 
                 <div id="window-proyectos" class="local-window">
-                    <div class="title-bar">Proyectos <button onclick="closeWindow('window-proyectos')">X</button></div>
-                    <div class="contentArc">
-                        <p>Contenido...</p>
-                        <a href="https://anadeheza.github.io/arcade/">
+                    <div class="title-bar">Arcade! <button onclick="closeWindow('window-proyectos')">X</button></div>
+                    <div class="content">
+                        <p>Ademas de los juegos en este escritorio tengo un mini arcade, lo podes checkear aca ▼ ;)</p>
+                        <a href="https://anadeheza.github.io/arcade/" class="img-arcade">
                             <img src="images/screen-arcade.png" alt="Arcade Screen">
                         </a>
                     </div>
@@ -79,7 +79,7 @@
                         </div>
                         <p class="carrete-info">← Desliza para ver más →</p>
                         
-                        <p>Esta es mi main playlist  ▼ ojalá les guste</p>
+                        <p>Esta es mi main playlist ▼ ojalá les guste</p>
                         <iframe data-testid="embed-iframe" 
                                 style="border-radius:12px" 
                                 src="https://open.spotify.com/embed/playlist/3p08bohQu5adH7nzsZ9acv?utm_source=generator" 
@@ -102,27 +102,35 @@
                         Contenido...
                     </div>
                 </div>
-                <div id="window-handball" class="local-window">
+                <!--<div id="window-handball" class="local-window">
                     <div class="title-bar">Handball <button onclick="closeWindow('window-handball')">X</button></div>
                     <div class="content">
                         Contenido...
                         <img src="images/handball/equipo.jpeg" alt="eq">
                     </div>
                 </div>
+                -->
                 <div id="window-poli" class="local-window">
-                    <div class="title-bar">Poli <button onclick="closeWindow('window-poli')">X</button></div>
+                    <div class="title-bar">Fotos<button onclick="closeWindow('window-poli')">X</button></div>
                     <div class="content">
                         Contenido...
                     </div>
                 </div>
                 <div id="window-ingles" class="local-window">
-                    <div class="title-bar">Ingles <button onclick="closeWindow('window-ingles')">X</button></div>
+                    <div class="title-bar">Ingles<button onclick="closeWindow('window-ingles')">X</button></div>
                     <div class="content">
                         Contenido...
                     </div>
                 </div>
             </div>
+
+            <div id="bottom-bar">
+                <div id="date-time">
+                    
+                </div>
+            </div>
         </div>
+
 
         <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
         <script src="scripts.js"></script>
