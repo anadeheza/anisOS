@@ -78,11 +78,25 @@ function initMosaic(){
 }
 
 //TOP BAR
-function updateClock() {
+function updateDateTime() {
     const now = new Date();
-    document.getElementById('time').innerText = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+    
+    const options = { weekday: 'short', month: 'short', day: 'numeric' };
+    const dayString = now.toLocaleDateString('en-US', options);
+    
+    const timeString = now.toLocaleTimeString('en-US', { 
+        hour: '2-digit', 
+        minute: '2-digit',
+        hour12: 'false' 
+    });
+
+    document.getElementById('day').textContent = dayString;
+    document.getElementById('time').textContent = timeString;
 }
-setInterval(updateClock, 1000);
+
+setInterval(updateDateTime, 1000);
+
+updateDateTime();
 
 async function showWeather() {
     const ventana = document.getElementById('window-clima');

@@ -31,21 +31,21 @@ body {
     position: absolute;
 }
 
-span {
+#container span {
     aspect-ratio: 1 / 1;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(241, 9, 9, 0.1);
     transition: background-color 0.3s ease;
-    border: 1px solid #22000a3d;
+    border: 1px solid #0022053d;
     border-radius: 5px;
     box-sizing: border-box;
 }
 
-span.active {
+#container span.active {
     background-color: var(--color-active);
     transition: background-color 0s;
 }
 
-span.near {
+#container span.near {
     background-color: var(--color-near);
 }
 
@@ -300,20 +300,31 @@ span.near {
     padding: 0 20px;
     color: white;
     font-size: 15px;
-    z-index: 100; 
+    z-index: 100;
+    justify-content: space-between;
 }
 
+/*dia y hora*/
 #date-time {
-    margin-left: 1250px;
+    margin-left: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px; 
 }
 
-#day, #time {
-    border: 4px solid rgba(0, 0, 0, 0.029);
+#date-time span {
+    background: rgba(0, 0, 0, 0.1);
+    border: 5px solid rgba(0, 0, 0, 0.02);
+    border-radius: 5px;
+}
+
+#time {
+    margin-right: 50px;
 }
 
 /*clima*/
 #weather {
-    margin-left: 10px;
     font-size: 27px;
     margin-bottom: 3px;
     cursor: pointer;
@@ -323,7 +334,7 @@ span.near {
     width: 150px; 
     height: 150px;
     display: block; 
-    margin: 0 auto;  
+    margin-left: 10px;
     filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.2));
 }
 
@@ -374,11 +385,7 @@ span.near {
     background: rgba(255, 255, 255, 0.834);
 }
 
-#home {
-    font-size: 25px;
-    padding: 10px;
-}
-
+/*bottom bar*/
 #bottom-bar {
     justify-content: space-between;
     position: fixed;
@@ -397,7 +404,6 @@ span.near {
     z-index: 100; 
 }
 
-/*bottom bar*/
 #bottom-bar .app {
     cursor: pointer;
     transition: transform 0.2s;
@@ -417,7 +423,6 @@ span.near {
 .app img {
     width: 50px;
 }
-
 
 #window-spotify .content {
     display: block;
