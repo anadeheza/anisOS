@@ -178,9 +178,10 @@ span.near {
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    padding: 10px 0;
+    padding-left: 15px; 
+    padding-right: 15px;
+    padding-bottom: 10px;
     width: 90%;
-    justify-content: center;
     gap: 5px;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
@@ -192,14 +193,24 @@ span.near {
 
 .image-container img {
     flex: 0 0 80%;
-    width: 80%;
-    height: 200px;
+    width: auto;
+    max-width: 160px;          
+    height: auto;
     object-fit: cover;
     scroll-snap-align: center;
-    border-radius: 8px;
-    border: 2px solid black;
+    border-radius: 10px;
+    border: 5px solid black;
+
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
 }
 
+.carrete-info {
+    font-size: 8px;
+    color: #666;
+    text-align: center;
+    margin-top: 5px;
+}
 
 .local-window {
     pointer-events: auto;
@@ -239,21 +250,19 @@ span.near {
     align-items: center;
 }
 
-.local-window .content img {
-    width: auto;
-    border: 5px solid black;
-    border-radius: 10px;
-    max-width: 120px;          
-    height: auto;
-    object-fit: cover;
-}
-
 .local-window .content iframe {
     display: block;
     border: none;
     width: 80%;
     height: 350px;
     max-height: 360px;   
+}
+
+.local-window .content img {
+    margin-top: 20px;
+    width: 500px;
+    border-radius: 10px;
+    border: 4px solid rgba(30, 30, 30, 0.547);
 }
 
 .local-window button {
