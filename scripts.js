@@ -230,10 +230,6 @@ function openWindow(windowId) {
         createCanvas();
     }
 
-    if (windowId === 'window-spaceJump') {
-        init(); 
-        update();
-    }
 }
 
 function toggleApp(windowId) {
