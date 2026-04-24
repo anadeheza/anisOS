@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>AniOS</title>
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="login-screen" class="start-window" onclick="enterSystem()">
+            <div class="card">
+                <h1>Welcome to AniOS</h1>
+                <p>Press "Enter" to continue</p>
+            </div>
+            <div class="arrow-down">▼</div>
+        </div>
+
+        <div id="desktop" style="display:none;">
+            <div id="top-bar">
+                <div id="weather" onclick="showWeather()">☀️</div>                
+                <div id="date-time">
+                    <span id="day"></span>
+                    <span id="time"></span>
+                </div>
+            </div>
+
+            <div id="bottom-bar">
+                <div class="app" data-target="window-spotify">
+                    <img src="images/apps/spotify.png" alt="Music App">
+                </div>
+                <div class="app" data-target="window-pixelArt">
+                    <img src="images/apps/pixel-art.png" alt="Pixel Art App">
+                </div>
+                <div class="app" data-target="window-spaceJump">
+                    <img src="images/apps/space-jump.png" alt="Space Jump App">
+                </div>
+                <div class="app" data-target="window-calcu">
+                    <img src="images/apps/calcu.png" alt="Calc App">
+                </div>
+                <div class="app" data-target="window-notas">
+                    <img src="images/apps/notes.png" alt="Notes App">
+                </div>
+
+            </div>
+
+            <div class="shadow-overlay"></div>
+            <div class="container" id="container"></div>
+            
+            <div class="window" id="project-window">
+                <div class="title-bar">Quien es Ana?</div>
+                <p>Busca entre los stickers el que mas te guste :)</p>
+            </div>
+
+            <div id="sticker-container">
+                <div class="sticker" data-target="window-proyectos"><img src="images/arcade.png"><span>Proyectos</span></div>
+                <div class="sticker" data-target="window-music"><img src="images/music.png"><span>Music</span></div>                    
+                <div class="sticker" data-target="window-sobre-mi"><img src="images/sobre-mi.png"><span>Sobre Mi</span></div>
+                <div class="sticker" data-target="window-poli"><img src="images/viajes.png"><span>Viajes</span></div>                    
+            </div>
+
+            <div id="window-manager">
+                <div id="window-pixelArt" class="local-window">
+                    <div class="title-bar">
+                        Pixel Art <button onclick="closeWindow('window-pixelArt')">X</button>
+                    </div>
+                    <div class="content" id="pixelArt-content">
+                        <div class="pixel-editor-controls">
+                            <input type="color" id="colorPicker" value="#ff0000">
+                            <button onclick="clearCanvas()">Limpiar</button>
+                        </div>
+                        <div id="pixel-canvas"></div>               
+                    </div>
+                </div>
+
+                <div id="window-spotify" class="local-window">
+                    <div class="title-bar">
+                        Spotify 🎧ྀི <button onclick="closeWindow('window-spotify')">X</button>
+                    </div>
+                    <div class="content" id="spotify-content">
+                        <p> Cual es tu mood de hoy? </p>
+                    </div>
+                </div>
+
+                <div id="window-spaceJump" class="local-window">
+                    <div class="title-bar">
+                        Space Jump ( ← → / "A" "D" to move, ↑ to start) <button onclick="closeWindow('window-spaceJump')">X</button>
+                    </div>
+                    <div class="content-sj" id="spaceJump-content">
+                        <iframe src="componentes/jump-game.html" width="100%" height="800px" frameborder="0" scrolling="no"></iframe>
+                    </div>
+                </div>
+
+                <div id="window-calcu" class="local-window">
+                    <div class="title-bar">
+                        Calculadora <button onclick="closeWindow('window-calcu')">X</button>
+                    </div>
+                    <div class="content" id="calcu-content" style="padding:0;">
+                        <div id="calcu">
+                            <div id="calcu-display">0</div>
+                            <div id="calcu-buttons">
+                                <button class="calcu-btn" onclick="calcuClear()">C</button>
+                                <button class="calcu-btn" onclick="calcuBackspace()">⌫</button>
+                                <button class="calcu-btn" onclick="calcuInput('/')" >÷</button>
+                                <button class="calcu-btn" onclick="calcuInput('*')">×</button>
+
+                                <button class="calcu-btn" onclick="calcuInput('7')">7</button>
+                                <button class="calcu-btn" onclick="calcuInput('8')">8</button>
+                                <button class="calcu-btn" onclick="calcuInput('9')">9</button>
+                                <button class="calcu-btn" onclick="calcuInput('-')">−</button>
+
+                                <button class="calcu-btn" onclick="calcuInput('4')">4</button>
+                                <button class="calcu-btn" onclick="calcuInput('5')">5</button>
+                                <button class="calcu-btn" onclick="calcuInput('6')">6</button>
+                                <button class="calcu-btn" onclick="calcuInput('+')">+</button>
+
+                                <button class="calcu-btn" onclick="calcuInput('1')">1</button>
+                                <button class="calcu-btn" onclick="calcuInput('2')">2</button>
+                                <button class="calcu-btn" onclick="calcuInput('3')">3</button>
+                                <button class="calcu-btn equal" onclick="calcuEquals()" style="grid-row: span 2;">=</button>
+
+                                <button class="calcu-btn span2" onclick="calcuInput('0')">0</button>
+                                <button class="calcu-btn" onclick="calcuInput('.')">.</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="window-notas" class="local-window">
+                    <div class="title-bar">
+                        Notas 🗒 <button onclick="closeWindow('window-notas')">X</button>
+                    </div>
+                    <div class="content" id="notas-content">
+                        <div class="todo-input-container">
+                            <input type="text" id="todo-input" placeholder="Nueva tarea..." onkeydown="handleKeyPress(event)">
+                            <button onclick="addTodo()">+</button>
+                        </div>
+                        <ul id="todo-list"></ul>
+                        <button id="clear-all-btn" onclick="clearAll()">Borrar todo</button>
+                    </div>
+                </div>
+
+                <div id="window-clima" class="local-window-w">
+                    <div class="title-bar">
+                        Clima ⋆｡ﾟ☁︎｡⋆𓂃 ོ☼𓂃<button onclick="closeWindow('window-clima')">X</button>
+                    </div>
+                    <div class="content" id="weather-content">
+                        <p>Cargando datos...</p>
+                    </div>
+                </div>
+
+                <div id="window-proyectos" class="local-window">
+                    <div class="title-bar">Arcade! <button onclick="closeWindow('window-proyectos')">X</button></div>
+                    <div class="content-s">
+                        <p>Ademas de los juegos en este escritorio tengo un mini arcade, lo podes checkear aca ▼ ;)</p>
+                        <a href="https://anadeheza.github.io/arcade/" class="img-arcade">
+                            <img src="images/screen-arcade.png" alt="Arcade Screen">
+                        </a>
+                    </div>
+                </div>
+
+                <div id="window-music" class="local-window">
+                    <div class="title-bar">Music🎧ྀི<button onclick="closeWindow('window-music')">X</button></div>
+                    <div class="content">
+                        <p>Siempre me gustó mucho la musica, hasta toqué la bateria un tiempo :P</p>
+
+                        <div class="image-container">
+                            <img src="images/music/rels.jpg" alt="Rels B">
+                            <img src="images/music/cuarteto.jpg" alt="Cuarteto">
+                            <img src="images/music/paulo.jpg" alt="Paulo Londra">
+                            <img src="images/music/wos.png" alt="Wos">
+                            <img src="images/music/duki.jpeg" alt="Duki">
+                            <img src="images/music/morat.jpeg" alt="Morat">
+                        </div>
+                        <p class="carrete-info">← Desliza para ver más →</p>
+                        
+                        <p>Esta es mi main playlist ▼ ojalá les guste</p>
+                        <iframe data-testid="embed-iframe" 
+                                style="border-radius:12px" 
+                                src="https://open.spotify.com/embed/playlist/3p08bohQu5adH7nzsZ9acv?utm_source=generator" 
+                                width="100%" 
+                                height="100%" 
+                                frameBorder="0" a
+                                llowfullscreen="" 
+                                allow="autoplay; 
+                                clipboard-write; 
+                                encrypted-media; 
+                                fullscreen; 
+                                picture-in-picture" 
+                                loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+                <div id="window-sobre-mi" class="local-window">
+                    <div class="title-bar">Sobre mi <button onclick="closeWindow('window-sobre-mi')">X</button></div>
+                    <div class="content">
+                        Contenido...
+                    </div>
+                </div>
+                <div id="window-poli" class="local-window">
+                    <div class="title-bar">Sunset pics ᨒ ོ ☼<button onclick="closeWindow('window-poli')">X</button></div>
+                    <div class="content-s">
+                        <div class="image-container-s">
+                        <p></p>
+                            <img src="images/sunsets/sunset3.jpeg" >
+                            <img src="images/sunsets/sunset2.jpeg" >
+                            <img src="images/sunsets/sunset4.jpeg" >
+                            <img src="images/sunsets/sunset5.jpeg" > 
+                            <img src="images/sunsets/sunset1.jpeg">
+                        </div>
+                        <p class="carrete-info">← Desliza para ver más →</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+        <script src="scripts.js"></script>
+    </body>
+</html>
