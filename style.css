@@ -173,7 +173,7 @@ body {
     display: none;
 }
 
-.image-container {
+.image-container, .image-container-s {
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
@@ -194,6 +194,20 @@ body {
     flex: 0 0 80%;
     width: auto;
     max-width: 160px;          
+    height: auto;
+    object-fit: cover;
+    scroll-snap-align: center;
+    border-radius: 10px;
+    border: 5px solid black;
+
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+}
+
+.image-container-s img {
+    flex: 0 0 80%;
+    width: auto;
+    max-width: 250px;          
     height: auto;
     object-fit: cover;
     scroll-snap-align: center;
@@ -226,7 +240,6 @@ body {
     touch-action: none;
     user-select: none;
     border-radius: 10px;
-    
 }
 
 .local-window .title-bar {
@@ -247,6 +260,22 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+}
+
+.local-window .content-s {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.local-window .content-s img {
+    width: 600px;
+    margin-top: 70px;
+    border-radius: 10px;
+    border: 4px solid rgba(30, 30, 30, 0.547);
 }
 
 .local-window .content iframe {
@@ -258,8 +287,8 @@ body {
 }
 
 .local-window .content img {
-    margin-top: 20px;
-    width: 500px;
+    width: 600px;
+    margin-top: 10px;
     border-radius: 10px;
     border: 4px solid rgba(30, 30, 30, 0.547);
 }
@@ -387,13 +416,13 @@ body {
 
 /*bottom bar*/
 #bottom-bar {
-    justify-content: space-between;
+    justify-content: center;
     position: fixed;
     bottom: 20px;
-    left: 370px;
+    left: 30%;
+    right: 30%;
     border-radius: 30px;
-    width: 50%;
-    height: 80px;
+    height: 75px;
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(5px);
     display: flex;
@@ -407,6 +436,7 @@ body {
 #bottom-bar .app {
     cursor: pointer;
     transition: transform 0.2s;
+    margin: 10px;
 }
 
 #bottom-bar .app:hover {
@@ -421,11 +451,48 @@ body {
 }
 
 .app img {
-    width: 50px;
+    width: 60px;
 }
 
 #window-spotify .content {
     display: block;
     overflow-y: auto;
     max-height: 500px;
+}
+
+/*pixel art*/
+#pixel-canvas {
+    display: grid;
+    grid-template-columns: repeat(30, 20px); 
+    grid-template-rows: repeat(20, 20px);    
+    border: 2px solid #333;    
+    border: 1px solid #999;
+}
+
+#pixel-canvas span {
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border: 1px solid #eee;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.pixel-editor-controls {
+    margin-bottom: 10px;
+}
+
+
+
+/*calcu*/
+
+/*space jump*/
+#canvas1 {
+    display: block !important;
+    width: 600px !important;
+    height: 400px !important;
+    visibility: visible !important;
+    background-color: black !important; /* Para ver si existe */
+    position: relative !important;
+    z-index: 1000 !important;
 }

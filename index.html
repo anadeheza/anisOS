@@ -23,7 +23,7 @@
             <div id="top-bar">
                 <div id="weather" onclick="showWeather()">☀️</div>                
                 <div id="date-time">
-                    <span id="day">day</span>
+                    <span id="day"></span>
                     <span id="time"></span>
                 </div>
             </div>
@@ -31,6 +31,18 @@
             <div id="bottom-bar">
                 <div class="app" data-target="window-spotify">
                     <img src="images/arcade.png" alt="Music App">
+                </div>
+                <div class="app" data-target="window-pixelArt">
+                    <img src="images/arcade.png" alt="Pixel Art App">
+                </div>
+                <div class="app" data-target="window-spaceJump">
+                    <img src="images/arcade.png" alt="Space Jump App">
+                </div>
+                <div class="app" data-target="window-calcu">
+                    <img src="images/arcade.png" alt="Calc App">
+                </div>
+                <div class="app" data-target="window-notas">
+                    <img src="images/arcade.png" alt="Notes App">
                 </div>
 
             </div>
@@ -53,11 +65,51 @@
             </div>
 
             <div id="window-manager">
+                <div id="window-pixelArt" class="local-window">
+                    <div class="title-bar">
+                        Pixel Art <button onclick="closeWindow('window-pixelArt')">X</button>
+                    </div>
+                    <div class="content" id="pixelArt-content">
+                        <div class="pixel-editor-controls">
+                            <input type="color" id="colorPicker" value="#ff0000">
+                            <button onclick="clearCanvas()">Limpiar</button>
+                        </div>
+                        <div id="pixel-canvas"></div>               
+                    </div>
+                </div>
+
                 <div id="window-spotify" class="local-window">
                     <div class="title-bar">
-                        Spotify <button onclick="closeWindow('window-spotify')">X</button>
+                        Spotify 🎧ྀི <button onclick="closeWindow('window-spotify')">X</button>
                     </div>
                     <div class="content" id="spotify-content">
+                        <p> Cual es tu mood de hoy? </p>
+                    </div>
+                </div>
+
+                <div id="window-spaceJump" class="local-window">
+                    <div class="title-bar">
+                        Space Jump <button onclick="closeWindow('window-spaceJump')">X</button>
+                    </div>
+                    <div class="content" id="spaceJump-content">
+                        <iframe src="componentes/index.html" width="100%" height="400px" frameborder="0"></iframe>
+                    </div>
+                </div>
+
+                <div id="window-calcu" class="local-window">
+                    <div class="title-bar">
+                        Calculadora <button onclick="closeWindow('window-calcu')">X</button>
+                    </div>
+                    <div class="content" id="calcu-content">
+                        <p> Cual es tu mood hoy? </p>
+                    </div>
+                </div>
+
+                <div id="window-notas" class="local-window">
+                    <div class="title-bar">
+                        Notas 🗒 <button onclick="closeWindow('window-notas')">X</button>
+                    </div>
+                    <div class="content" id="notas-content">
                         <p> Cual es tu mood hoy? </p>
                     </div>
                 </div>
@@ -73,7 +125,7 @@
 
                 <div id="window-proyectos" class="local-window">
                     <div class="title-bar">Arcade! <button onclick="closeWindow('window-proyectos')">X</button></div>
-                    <div class="content">
+                    <div class="content-s">
                         <p>Ademas de los juegos en este escritorio tengo un mini arcade, lo podes checkear aca ▼ ;)</p>
                         <a href="https://anadeheza.github.io/arcade/" class="img-arcade">
                             <img src="images/screen-arcade.png" alt="Arcade Screen">
@@ -82,10 +134,10 @@
                 </div>
 
                 <div id="window-music" class="local-window">
-                    <div class="title-bar">Music <button onclick="closeWindow('window-music')">X</button></div>
+                    <div class="title-bar">Music🎧ྀི<button onclick="closeWindow('window-music')">X</button></div>
                     <div class="content">
                         <p>Siempre me gustó mucho la musica, hasta toqué la bateria un tiempo :P</p>
-                        
+
                         <div class="image-container">
                             <img src="images/music/rels.jpg" alt="Rels B">
                             <img src="images/music/cuarteto.jpg" alt="Cuarteto">
@@ -128,9 +180,17 @@
                 </div>
                 -->
                 <div id="window-poli" class="local-window">
-                    <div class="title-bar">Fotos<button onclick="closeWindow('window-poli')">X</button></div>
-                    <div class="content">
-                        Contenido...
+                    <div class="title-bar">Sunset pics ᨒ ོ ☼<button onclick="closeWindow('window-poli')">X</button></div>
+                    <div class="content-s">
+                        <div class="image-container-s">
+                        <p></p>
+                            <img src="images/sunsets/sunset3.jpeg" >
+                            <img src="images/sunsets/sunset2.jpeg" >
+                            <img src="images/sunsets/sunset4.jpeg" >
+                            <img src="images/sunsets/sunset5.jpeg" > 
+                            <img src="images/sunsets/sunset1.jpeg">
+                        </div>
+                        <p class="carrete-info">← Desliza para ver más →</p>
                     </div>
                 </div>
                 <div id="window-ingles" class="local-window">

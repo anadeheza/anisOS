@@ -1,6 +1,11 @@
 let spans;
 let systemEntered = false;
 
+function start() {
+    init();
+    update();
+}
+
 const myPlaylists = [
     { name: "⚡️", id: "3p08bohQu5adH7nzsZ9acv" },
     { name: "danielito", id: "6nhi8SEgbCLTMnNqkF92E3" },
@@ -189,6 +194,59 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 //VENTANAS
+function minimizeWindow(windowId) {
+    const ventana = document.getElementById(windowId);
+    ventana.style.display = 'none'; 
+}
+
+function openWindow(windowId) {
+    const ventana = document.getElementById(windowId);
+    ventana.style.display = 'block';
+    ventana.style.zIndex = '1000';
+
+
+    const icon = document.querySelector(`.app[data-target="${windowId}"]`);
+    if (icon) icon.classList.add('app-active');
+    
+    if (windowId === 'window-spotify') {
+        const content = ventana.querySelector('.content');
+        const iframe = content.querySelector('iframe');
+
+        if (!iframe) {
+            myPlaylists.forEach(playlist => {
+                const embedHtml = `
+                    <iframe style="border-radius:12px; width:90%; height:400px; margin: 10px;" 
+                            src="https://open.spotify.com/embed/playlist/${playlist.id}?utm_source=generator" 
+                            frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                            loading="lazy">
+                    </iframe>
+                `;
+                content.insertAdjacentHTML('beforeend', embedHtml);
+            });
+        }
+    }
+
+    if (windowId === 'window-paint') {
+        createCanvas();
+    }
+
+    if (windowId === 'window-spaceJump') {
+        init(); 
+        update();
+    }
+}
+
+function toggleApp(windowId) {
+    const ventana = document.getElementById(windowId);
+    const icon = document.querySelector(`.app[data-target="${windowId}"]`);
+    
+    if (ventana.style.display === 'block') {
+        minimizeWindow(windowId);
+    } else {
+        openWindow(windowId);
+    }
+}
+
 window.closeWindow = function(id) {
     const ventana = document.getElementById(id);
     if (!ventana) return;
@@ -228,47 +286,27 @@ document.querySelectorAll('#bottom-bar .app').forEach(app => {
     });
 });
 
-//SPOTIFY
-function minimizeWindow(windowId) {
-    const ventana = document.getElementById(windowId);
-    ventana.style.display = 'none'; 
-}
-
-function openWindow(windowId) {
-    const ventana = document.getElementById(windowId);
-    ventana.style.display = 'block';
-    ventana.style.zIndex = '1000';
-
-
-    const icon = document.querySelector(`.app[data-target="${windowId}"]`);
-    if (icon) icon.classList.add('app-active');
+//pixel art 
+function createCanvas() {
+    const canvas = document.getElementById('pixel-canvas');
+    const colorPicker = document.getElementById('colorPicker');
     
-    if (windowId === 'window-spotify') {
-        const content = ventana.querySelector('.content');
-        const iframe = content.querySelector('iframe');
-
-        if (!iframe) {
-            myPlaylists.forEach(playlist => {
-                const embedHtml = `
-                    <iframe style="border-radius:12px; width:90%; height:400px; margin: 10px;" 
-                            src="https://open.spotify.com/embed/playlist/${playlist.id}?utm_source=generator" 
-                            frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                            loading="lazy">
-                    </iframe>
-                `;
-                content.insertAdjacentHTML('beforeend', embedHtml);
-            });
-        }
+    // Crear 400 píxeles (20x20)
+    for (let i = 0; i < 720; i++) {
+        const pixel = document.createElement('span');
+        
+        // Pintar al hacer click o arrastrar
+        pixel.addEventListener('mousedown', () => pixel.style.backgroundColor = colorPicker.value);
+        pixel.addEventListener('mouseover', (e) => {
+            if (e.buttons === 1) pixel.style.backgroundColor = colorPicker.value;
+        });
+        
+        canvas.appendChild(pixel);
     }
 }
 
-function toggleApp(windowId) {
-    const ventana = document.getElementById(windowId);
-    const icon = document.querySelector(`.app[data-target="${windowId}"]`);
-    
-    if (ventana.style.display === 'block') {
-        minimizeWindow(windowId);
-    } else {
-        openWindow(windowId);
-    }
+function clearCanvas() {
+    document.querySelectorAll('#pixel-canvas span').forEach(p => p.style.backgroundColor = 'white');
 }
+
+createCanvas();
