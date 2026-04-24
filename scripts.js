@@ -92,7 +92,7 @@ function updateDateTime() {
     const timeString = now.toLocaleTimeString('en-US', { 
         hour: '2-digit', 
         minute: '2-digit',
-        hour12: 'false' 
+        hour12: false 
     });
 
     document.getElementById('day').textContent = dayString;
@@ -109,7 +109,7 @@ async function showWeather() {
     ventana.style.zIndex = "9999";
 
     const content = document.getElementById('weather-content');
-    content.innerHTML = "<p>Detectando ubicación...</p>";
+    content.innerHTML = "<p>Loading...</p>";
 
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(async (position) => {
@@ -117,7 +117,7 @@ async function showWeather() {
             const lon = position.coords.longitude;
             const apiKey = '39e5d453e46c0ba96d06e7b4dd258f25'; 
             
-            const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=es`;
+            const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=en`;
 
             try {
                 const response = await fetch(url);
@@ -134,13 +134,13 @@ async function showWeather() {
                 `;
             } catch (error) {
                 console.error(error);
-                content.innerHTML = "<p>Error al procesar datos.</p>";
+                content.innerHTML = "<p>Error.</p>";
             }
         }, (error) => {
-            content.innerHTML = "<p>Permiso de ubicación denegado.</p>";
+            content.innerHTML = "<p>Permit denied.</p>";
         });
     } else {
-        content.innerHTML = "<p>Geolocalización no soportada.</p>";
+        content.innerHTML = "<p>Geolocation not supported.</p>";
     }
 }
 
@@ -185,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 ventana.style.display = 'block';
                 ventana.style.zIndex = "9999"; 
             } else {
-                console.error("No se encontró la ventana con ID:", targetId);
+                console.error("Ncouldn't find the window with the ID:", targetId);
             }
         });
     });
