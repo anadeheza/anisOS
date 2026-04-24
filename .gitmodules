@@ -1,0 +1,3 @@
+[submodule "componentes"]
+	path = componentes
+	url = https://github.com/anadeheza/anisOS
