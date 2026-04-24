@@ -399,52 +399,21 @@ function clearAll() {
 }
 
 //system info
-let browser = document.querySelector("#bws2");
-let screenDisplay = document.querySelector("#scr2");
-let timeZone = document.querySelector("#tz2");
-let osVer = document.querySelector("#osv2");
+function showInfo() {
+    const browser = navigator.userAgent;
+    const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const resolution = `${window.screen.width} x ${window.screen.height}`;
+    const osVersion = navigator.userAgent.match(/webOS\/(\d+\.\d+)/) 
+                      ? navigator.userAgent.match(/webOS\/(\d+\.\d+)/)[1] 
+                      : "Unknown/Browser context";
 
-const userAgent = navigator.userAgent;
-let browserName = "Unknown";
-let browserVersion = "Unknown";
+    const infoMessage = `
+        System Information:
+        Browser: ${browser.split(' ').pop()} 
+        Time Zone: ${timeZone}
+        Resolution: ${resolution}
+        OS Version: ${osVersion}
+    `;
 
-if (userAgent.includes("Edg/")) {
-    browserName = "Edge";
-    browserVersion = userAgent.match(/Edg\/([\d.]+)/)?.[1];
-} else if (userAgent.includes("Chrome/") && !userAgent.includes("Chromium/")) {
-    browserName = "Chrome";
-    browserVersion = userAgent.match(/Chrome\/([\d.]+)/)?.[1];
-} else if (userAgent.includes("Firefox/")) {
-    browserName = "Firefox";
-    browserVersion = userAgent.match(/Firefox\/([\d.]+)/)?.[1];
-} else if (userAgent.includes("Safari/") && !userAgent.includes("Chrome/")) {
-    browserName = "Safari";
-    browserVersion = userAgent.match(/Version\/([\d.]+)/)?.[1];
-} else if (userAgent.includes("OPR/") || userAgent.includes("Opera/")) {
-    browserName = "Opera";
-    browserVersion = userAgent.match(/OPR\/([\d.]+)/)?.[1];
+    alert(infoMessage);
 }
-
-const screenRes = `${screen.width} x ${screen.height}`;
-
-const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
-let osVersion = "Unknown";
-if (userAgent.includes("Windows NT 10.0")) osVersion = "Windows 10/11";
-else if (userAgent.includes("Windows NT 6.3")) osVersion = "Windows 8.1";
-else if (userAgent.includes("Windows NT 6.1")) osVersion = "Windows 7";
-else if (userAgent.includes("Mac OS X")) {
-    const match = userAgent.match(/Mac OS X ([\d_]+)/);
-    osVersion = "macOS " + (match?.[1]?.replace(/_/g, ".") ?? "");
-} else if (userAgent.includes("Android")) {
-    const match = userAgent.match(/Android ([\d.]+)/);
-    osVersion = "Android " + (match?.[1] ?? "");
-} else if (userAgent.includes("iPhone OS") || userAgent.includes("iPad")) {
-    const match = userAgent.match(/OS ([\d_]+)/);
-    osVersion = "iOS " + (match?.[1]?.replace(/_/g, ".") ?? "");
-} else if (userAgent.includes("Linux")) osVersion = "Linux";
-
-browser.textContent = `${browserName} ${browserVersion}`;
-screenDisplay.textContent = screenRes;
-osVer.textContent = osVersion;
-timeZone.textContent = userTimeZone;
