@@ -1,28 +1,28 @@
 # anisOS
 
-# 🖥️ AniOS — A Personal WebOS
+# AniOS — A Personal WebOS
 A browser-based desktop built from scratch with HTML, CSS, and JavaScript. AniOS is kind of a personal portfolio reimagined as an operating system, with draggable windows, a live taskbar and interactive apps with and a pixel-art aesthetic.
 
-## ✨ Features
+## Features
 
-### 🗂️ Window Manager
+### Window Manager
 Every section of the site opens as a draggable, closeable window — just like a real OS. Windows are managed through a custom system built with JavaScript and each one can be opened from the bottom dock or by clicking stickers on the desktop.
 
-### 🧩 Desktop & Stickers
+### Desktop & Stickers
 The desktop background is a reactive mosaic grid that highlights on hover. Draggable sticker icons sit on top of it, each one opening a different window with personal content: music, sunset photos, my own arcade, and some things about me.
 
-### 📌 Top Bar
+### Top Bar
 - **Live clock and date** — updates every second
 - **Weather widget** — fetches real-time weather based on your geolocation using the OpenWeatherMap API
 - **System Info button** — displays system/browser information
 
-### 🚀 Bottom Dock
+### Bottom Dock
 A macOS-style dock at the bottom of the screen gives quick access to all built-in apps:
-- 🎧 **Spotify** — embedded playlists
-- 🎨 **Pixel Art** — a 30×24 grid pixel editor with color picker and clear button
-- 👾 **Space Jump** — a Doodle Jump-style game (see below)
-- 🧮 **Calculator**
-- 🗒️ **Notes**
+- **Spotify** — embedded playlists
+- **Pixel Art** — a 30×24 grid pixel editor with color picker and clear button
+- **Space Jump** — a Doodle Jump-style game (see below)
+- **Calculator**
+- **Notes**
 
 ### 👾 Space Jump (Mini Game)
 A canvas-based platformer game where you jump between platforms trying to reach the highest score. Features include:
@@ -36,7 +36,7 @@ A canvas-based platformer game where you jump between platforms trying to reach 
 
 No frameworks. No build tools. Just vanilla web.
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 ├── index.html          # Main shell — login screen, desktop, all windows
@@ -52,15 +52,15 @@ No frameworks. No build tools. Just vanilla web.
         └── platBroken.png
 ```
 
-## 🚀 Getting Started
+## Getting Started
 
-> ⚠️ The weather widget requires geolocation permission and an internet connection to fetch data from OpenWeatherMap.
+> The weather widget requires geolocation permission and an internet connection to fetch data from OpenWeatherMap.
 
 If you want to run it locally with full iframe support, use a local server (e.g. VS Code Live Server or `python -m http.server`) to avoid cross-origin restrictions.
 
 ---
 
-## 🎮 Space Jump Controls
+## Space Jump Controls
 
 | Input            | Action                  |
 | `←` / `A`        | Move left               |
@@ -69,7 +69,7 @@ If you want to run it locally with full iframe support, use a local server (e.g.
 | Touch left half  | Move left               |
 | Touch right half | Move right              |
 
-## 📸 Preview
+## Preview
 
 > <img width="1919" height="913" alt="image" src="https://github.com/user-attachments/assets/0d05e5c4-b92b-4d4d-b6bb-7dd888a85605" />
 
