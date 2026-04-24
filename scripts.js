@@ -400,20 +400,24 @@ function clearAll() {
 
 //system info
 function showInfo() {
-    const browser = navigator.userAgent;
+    const ua = navigator.userAgent;
     const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     const resolution = `${window.screen.width} x ${window.screen.height}`;
-    const osVersion = navigator.userAgent.match(/webOS\/(\d+\.\d+)/) 
-                      ? navigator.userAgent.match(/webOS\/(\d+\.\d+)/)[1] 
-                      : "Unknown/Browser context";
+    
+    let browserName = "Unknown";
+    if (ua.includes("Chrome")) browserName = "Chrome";
+    else if (ua.includes("Safari")) browserName = "Safari";
+    else if (ua.includes("Firefox")) browserName = "Firefox";
 
-    const infoMessage = `
-        System Information:
-        Browser: ${browser.split(' ').pop()} 
-        Time Zone: ${timeZone}
-        Resolution: ${resolution}
-        OS Version: ${osVersion}
-    `;
+    let osName = "Unknown";
+    if (navigator.userAgentData) {
+        osName = navigator.userAgentData.platform;
+    } else {
+        if (ua.includes("Win")) osName = "Windows";
+        else if (ua.includes("Mac")) osName = "macOS";
+        else if (ua.includes("Linux")) osName = "Linux";
+    }
 
+    const infoMessage = `System Information:\n\nBrowser: ${browserName}\nTime Zone: ${timeZone}\nResolution: ${resolution}\nOS: ${osName}`;
     alert(infoMessage);
 }

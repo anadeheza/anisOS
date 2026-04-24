@@ -321,7 +321,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 40px;
+    height: 45px;
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(5px);
     display: flex;
@@ -412,6 +412,18 @@ body {
     border: 2px solid rgba(255, 255, 255, 0.44);
     background: rgba(255, 255, 255, 0.834);
     cursor: pointer;
+}
+
+/*sist info*/
+#system-info {
+    font-size: 30px;
+    margin-bottom: 3px;
+    cursor: pointer;
+    margin-right: 3px;
+}
+
+#system-info:hover {
+    color: rgb(155, 102, 2);
 }
 
 /*bottom bar*/
@@ -635,4 +647,20 @@ body {
 
 #clear-all-btn:hover {
     background-color: #ff9999;
+}
+
+/*yo*/
+
+.local-window .content-yo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.local-window .content-yo img {
+    width: 400px;
+    border-radius: 10px;
+    border: 4px solid rgba(30, 30, 30, 0.547);
 }
