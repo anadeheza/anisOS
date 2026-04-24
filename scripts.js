@@ -129,8 +129,8 @@ async function showWeather() {
                 content.innerHTML = `
                     <h3>${data.name}</h3>
                     <img src="${iconUrl}" alt="clima" class="weather-icon">
-                    <p>Temp: ${Math.round(data.main.temp)}°C</p>
-                    <p>Estado: ${data.weather[0].description}</p>
+                    <p>${Math.round(data.main.temp)}°C</p>
+                    <p>${data.weather[0].description}</p>
                 `;
             } catch (error) {
                 console.error(error);
