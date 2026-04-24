@@ -261,6 +261,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
 }
 
 .local-window .content iframe {
@@ -306,6 +307,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
 }
 
 .local-window .content-s img {
@@ -372,6 +374,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
 }
 
 .local-window-w .content img {
@@ -578,6 +581,7 @@ body {
     padding: 0;
     height: calc(100% - 50px);
     overflow: hidden;
+    text-align: center;
 }
 
 .local-window .content-sj iframe {
