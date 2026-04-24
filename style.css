@@ -397,7 +397,6 @@ body {
 
 .local-window-w .title-bar {
     border-radius: 10px;
-    cursor: move;
     background: rgba(0, 0, 0, 0.738);
     color: white;
     display: flex;
@@ -412,6 +411,7 @@ body {
     border-radius: 9px;
     border: 2px solid rgba(255, 255, 255, 0.44);
     background: rgba(255, 255, 255, 0.834);
+    cursor: pointer;
 }
 
 /*bottom bar*/
@@ -484,64 +484,155 @@ body {
 
 
 
-/*calcu*/
+/*calculadora*/
+#calcu {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#calcu-display {
+    background: #1e1e1e;
+    color: white;
+    font-size: 40px;
+    text-align: right;
+    padding: 20px 25px;
+    min-height: 80px;
+    word-break: break-all;
+    border-bottom: 1px solid #333;
+    border-radius: 10px 10px 0 0;
+    margin-top: 20px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+#calcu-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: #333;
+    flex: 1;
+    border-radius: 0 0 10px 10px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.calcu-btn {
+    background: #2d2d2d;
+    color: white;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 25px;
+    font-family: 'Press Start 2P', cursive;
+    transition: background 0.1s;
+}
+
+.calcu-btn:hover {
+    background: #ffb5b5e4;
+}
+
+.calcu-btn:active {
+    background: #ff87a1;
+}
+
+.calcu-btn.equal {
+    background: #fc8aa3;
+    color: white;
+}
+
+.calcu-btn.equal:hover {
+    background: #ff8fa4ea;
+}
+
+.calcu-btn.span2 {
+    grid-column: span 2;
+}
+
+#window-calcu {
+    width: 450px;
+    height: 600px;
+}
 
 /*space jump*/
 #canvas1 {
     z-index: 99999999;
 }
-/*
-#window-spaceJump .content {
-    padding: 0;
-    height: 100%;
-}
 
-#window-spaceJump .content iframe {
-    width: 100%;
-    height: 800px;
-    border: none;
-}*/
-
-.local-window-sj {
-    pointer-events: auto;
-    display: none;
-    width: 800px;
-    height: 600px;
-    min-height: 400px;
-    background: #f7dadaf1;
-    border: 3px solid #333;
-    box-shadow: 8px 8px 0px rgba(0,0,0,0.2);
-    z-index: 10000;
-    padding: 10px;
-    font-family: 'Press Start 2P', cursive;
-    touch-action: none;
-    user-select: none;
-    border-radius: 10px;
-}
-
-.local-window-sj .title-bar {
-    border-radius: 5px;
-    cursor: move;
-    background: rgba(0, 0, 0, 0.738);
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 7px;
-    font-size: 13px;
-    height: 30px;
-}
-
-.local-window-sj .content {
+.local-window .content-sj {
     margin-top: 10px;
     width: 100%;
-    height: 100%;
+    padding: 0;
+    height: calc(100% - 50px);
+    overflow: hidden;
 }
 
-.local-window-sj .content iframe {
+.local-window .content-sj iframe {
     border-radius: 10px;
     display: block;
     border: none;
     width: 100%;
-    height: 550px;
+    height: 100%;
+    margin: 0;
+}
+
+#window-spaceJump {
+    height: 620px;
+}
+
+/*notas*/
+#notas-content { 
+    padding: 10px; 
+}
+
+.todo-input-container { 
+    display: flex; 
+    gap: 5px; 
+    margin-bottom: 10px; 
+}
+
+.todo-input-container button {
+    font-size: 20px;
+}
+
+#todo-input {
+    border: 2px solid #333;
+    padding: 5px;
+    font-family: 'Press Start 2P', cursive; 
+    border-radius: 5px;
+}
+
+#todo-list { 
+    list-style: none; 
+    padding: 0; 
+}
+
+#todo-list li {
+    background: #fff0f5;
+    border: 1px solid #ffb6c1;
+    margin-bottom: 5px;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+    align-items: center;
+    width: 500px;
+    border-radius: 5px;
+}
+
+#clear-all-btn {
+    margin-top: 10px;
+    width: 20%;
+    padding: 10px;
+    background-color: #ffcccc; 
+    border: 1px solid #ff9999;
+    cursor: pointer;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+}
+
+#clear-all-btn:hover {
+    background-color: #ff9999;
 }

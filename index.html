@@ -30,19 +30,19 @@
 
             <div id="bottom-bar">
                 <div class="app" data-target="window-spotify">
-                    <img src="images/arcade.png" alt="Music App">
+                    <img src="images/apps/spotify.png" alt="Music App">
                 </div>
                 <div class="app" data-target="window-pixelArt">
-                    <img src="images/arcade.png" alt="Pixel Art App">
+                    <img src="images/apps/pixel-art.png" alt="Pixel Art App">
                 </div>
                 <div class="app" data-target="window-spaceJump">
-                    <img src="images/arcade.png" alt="Space Jump App">
+                    <img src="images/apps/space-jump.png" alt="Space Jump App">
                 </div>
                 <div class="app" data-target="window-calcu">
-                    <img src="images/arcade.png" alt="Calc App">
+                    <img src="images/apps/calcu.png" alt="Calc App">
                 </div>
                 <div class="app" data-target="window-notas">
-                    <img src="images/arcade.png" alt="Notes App">
+                    <img src="images/apps/notes.png" alt="Notes App">
                 </div>
 
             </div>
@@ -59,9 +59,7 @@
                 <div class="sticker" data-target="window-proyectos"><img src="images/arcade.png"><span>Proyectos</span></div>
                 <div class="sticker" data-target="window-music"><img src="images/music.png"><span>Music</span></div>                    
                 <div class="sticker" data-target="window-sobre-mi"><img src="images/sobre-mi.png"><span>Sobre Mi</span></div>
-                <!--<div class="sticker" data-target="window-handball"><img src="images/handball.png"><span>Handball</span></div> -->                
                 <div class="sticker" data-target="window-poli"><img src="images/viajes.png"><span>Viajes</span></div>                    
-                <div class="sticker" data-target="window-ingles"><img src="images/ingles.png"><span>Ingles</span></div>                
             </div>
 
             <div id="window-manager">
@@ -87,11 +85,11 @@
                     </div>
                 </div>
 
-                <div id="window-spaceJump" class="local-window-sj">
+                <div id="window-spaceJump" class="local-window">
                     <div class="title-bar">
-                        Space Jump ( ← → / "A" "D" to move, ↑ to play again) <button onclick="closeWindow('window-spaceJump')">X</button>
+                        Space Jump ( ← → / "A" "D" to move, ↑ to start) <button onclick="closeWindow('window-spaceJump')">X</button>
                     </div>
-                    <div class="content" id="spaceJump-content">
+                    <div class="content-sj" id="spaceJump-content">
                         <iframe src="componentes/jump-game.html" width="100%" height="800px" frameborder="0" scrolling="no"></iframe>
                     </div>
                 </div>
@@ -100,8 +98,34 @@
                     <div class="title-bar">
                         Calculadora <button onclick="closeWindow('window-calcu')">X</button>
                     </div>
-                    <div class="content" id="calcu-content">
-                        <p> Cual es tu mood hoy? </p>
+                    <div class="content" id="calcu-content" style="padding:0;">
+                        <div id="calcu">
+                            <div id="calcu-display">0</div>
+                            <div id="calcu-buttons">
+                                <button class="calcu-btn" onclick="calcuClear()">C</button>
+                                <button class="calcu-btn" onclick="calcuBackspace()">⌫</button>
+                                <button class="calcu-btn" onclick="calcuInput('/')" >÷</button>
+                                <button class="calcu-btn" onclick="calcuInput('*')">×</button>
+
+                                <button class="calcu-btn" onclick="calcuInput('7')">7</button>
+                                <button class="calcu-btn" onclick="calcuInput('8')">8</button>
+                                <button class="calcu-btn" onclick="calcuInput('9')">9</button>
+                                <button class="calcu-btn" onclick="calcuInput('-')">−</button>
+
+                                <button class="calcu-btn" onclick="calcuInput('4')">4</button>
+                                <button class="calcu-btn" onclick="calcuInput('5')">5</button>
+                                <button class="calcu-btn" onclick="calcuInput('6')">6</button>
+                                <button class="calcu-btn" onclick="calcuInput('+')">+</button>
+
+                                <button class="calcu-btn" onclick="calcuInput('1')">1</button>
+                                <button class="calcu-btn" onclick="calcuInput('2')">2</button>
+                                <button class="calcu-btn" onclick="calcuInput('3')">3</button>
+                                <button class="calcu-btn equal" onclick="calcuEquals()" style="grid-row: span 2;">=</button>
+
+                                <button class="calcu-btn span2" onclick="calcuInput('0')">0</button>
+                                <button class="calcu-btn" onclick="calcuInput('.')">.</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -110,7 +134,12 @@
                         Notas 🗒 <button onclick="closeWindow('window-notas')">X</button>
                     </div>
                     <div class="content" id="notas-content">
-                        <p> Cual es tu mood hoy? </p>
+                        <div class="todo-input-container">
+                            <input type="text" id="todo-input" placeholder="Nueva tarea..." onkeydown="handleKeyPress(event)">
+                            <button onclick="addTodo()">+</button>
+                        </div>
+                        <ul id="todo-list"></ul>
+                        <button id="clear-all-btn" onclick="clearAll()">Borrar todo</button>
                     </div>
                 </div>
 
@@ -171,14 +200,6 @@
                         Contenido...
                     </div>
                 </div>
-                <!--<div id="window-handball" class="local-window">
-                    <div class="title-bar">Handball <button onclick="closeWindow('window-handball')">X</button></div>
-                    <div class="content">
-                        Contenido...
-                        <img src="images/handball/equipo.jpeg" alt="eq">
-                    </div>
-                </div>
-                -->
                 <div id="window-poli" class="local-window">
                     <div class="title-bar">Sunset pics ᨒ ོ ☼<button onclick="closeWindow('window-poli')">X</button></div>
                     <div class="content-s">
@@ -193,14 +214,6 @@
                         <p class="carrete-info">← Desliza para ver más →</p>
                     </div>
                 </div>
-                <div id="window-ingles" class="local-window">
-                    <div class="title-bar">Ingles<button onclick="closeWindow('window-ingles')">X</button></div>
-                    <div class="content">
-                        Contenido...
-                    </div>
-                </div>
-
-
             </div>
         </div>
 

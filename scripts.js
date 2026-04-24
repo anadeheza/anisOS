@@ -254,6 +254,15 @@ window.closeWindow = function(id) {
         if (iframe) iframe.src = "";
     }
 
+    if (id === 'window-spaceJump') {
+        const iframe = ventana.querySelector('iframe');
+        if (iframe) {
+            const src = iframe.src;
+            iframe.src = '';
+            iframe.src = src;
+        }
+    }
+
     const icon = document.querySelector(`.app[data-target="${id}"]`);
     if (icon) icon.classList.remove('app-active');
 };
@@ -306,3 +315,85 @@ function clearCanvas() {
 }
 
 createCanvas();
+
+// CALCULADORA
+let calcuExpression = '';
+
+function calcuInput(val) {
+    const display = document.getElementById('calcu-display');
+    const operators = ['+', '-', '*', '/'];
+    const lastChar = calcuExpression.slice(-1);
+
+    if (operators.includes(val)) {
+        if (calcuExpression === '') return; 
+        if (operators.includes(lastChar)) {
+            calcuExpression = calcuExpression.slice(0, -1) + val;
+            display.textContent = calcuExpression;
+            return;
+        }
+    }
+
+    if (val === '.') {
+        const parts = calcuExpression.split(/[\+\-\*\/]/);
+        const lastNumber = parts[parts.length - 1];
+        if (lastNumber.includes('.')) return; // ya tiene punto
+        if (lastNumber === '') calcuExpression += '0'; // caso: operador seguido de punto
+    }
+
+    if (calcuExpression === '0') calcuExpression = '';
+    calcuExpression += val;
+    display.textContent = calcuExpression;
+}
+
+function calcuBackspace() {
+    const display = document.getElementById('calcu-display');
+    calcuExpression = calcuExpression.slice(0, -1);
+    display.textContent = calcuExpression || '0';
+}
+
+function calcuEquals() {
+    const display = document.getElementById('calcu-display');
+    try {
+        const result = Function('"use strict"; return (' + calcuExpression + ')')();
+        calcuExpression = String(parseFloat(result.toFixed(10)));
+        display.textContent = calcuExpression;
+    } catch {
+        display.textContent = 'Error';
+        calcuExpression = '';
+    }
+}
+
+function calcuClear() {
+    calcuExpression = '';
+    document.getElementById('calcu-display').textContent = '0';
+}
+
+/*notes*/
+function addTodo() {
+    const input = document.getElementById('todo-input');
+    const list = document.getElementById('todo-list');
+    
+    if (input.value.trim() !== "") {
+        const li = document.createElement('li');
+        li.innerHTML = `<span onclick="toggleComplete(this)">${input.value}</span> 
+                        <button onclick="this.parentElement.remove()">x</button>`;        
+        list.appendChild(li);
+        input.value = "";
+    }
+}
+
+function handleKeyPress(event) {
+    if (event.key === 'Enter') {
+        addTodo();
+    }
+}
+
+function toggleComplete(element) {
+    element.style.textDecoration = element.style.textDecoration === 'line-through' ? 'none' : 'line-through';
+    element.style.opacity = element.style.textDecoration === 'line-through' ? '0.6' : '1';
+}
+
+function clearAll() {
+    const list = document.getElementById('todo-list');
+    list.innerHTML = "";
+}
