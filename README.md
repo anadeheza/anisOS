@@ -69,12 +69,8 @@ If you want to run it locally with full iframe support, use a local server (e.g.
 | Touch left half  | Move left               |
 | Touch right half | Move right              |
 
----
-
 ## 📸 Preview
 
-> *(Add a screenshot here!)*
-
----
+> <img width="1919" height="913" alt="image" src="https://github.com/user-attachments/assets/0d05e5c4-b92b-4d4d-b6bb-7dd888a85605" />
 
 Made with 💜 by **Ana**
