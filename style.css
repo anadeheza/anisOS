@@ -117,11 +117,11 @@ body {
 
 /*secciones*/
 #window-manager {
-    position: absolute;
-    top: 50px;
-    left: 50px;
-    width: 100%;
-    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
     pointer-events: none; 
     z-index: 900;
 }
@@ -227,6 +227,7 @@ body {
 
 .local-window {
     pointer-events: auto;
+    position: fixed;
     display: none;
     width: 800px;
     height: 600px;
@@ -234,7 +235,6 @@ body {
     background: #f7dadaf1;
     border: 3px solid #333;
     box-shadow: 8px 8px 0px rgba(0,0,0,0.2);
-    z-index: 10000;
     padding: 10px;
     font-family: 'Press Start 2P', cursive;
     touch-action: none;
@@ -369,6 +369,23 @@ body {
     filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.2));
 }
 
+.local-window-w {
+    pointer-events: auto;
+    position: fixed;
+    display: none;
+    width: 500px;
+    height: 400px;
+    min-height: 400px;
+    background: #f7dadaf1;
+    border: 3px solid #333;
+    box-shadow: 8px 8px 0px rgba(0,0,0,0.2);
+    padding: 10px;
+    font-family: 'Press Start 2P', cursive;
+    touch-action: none;
+    user-select: none;
+    border-radius: 10px;
+}
+
 .local-window-w .content {
     padding: 20px;
     display: flex;
@@ -379,23 +396,6 @@ body {
 
 .local-window-w .content img {
     width: auto;
-}
-
-.local-window-w {
-    pointer-events: auto;
-    display: none;
-    width: 500px;
-    height: 400px;
-    min-height: 400px;
-    background: #f7dadaf1;
-    border: 3px solid #333;
-    box-shadow: 8px 8px 0px rgba(0,0,0,0.2);
-    z-index: 10000;
-    padding: 10px;
-    font-family: 'Press Start 2P', cursive;
-    touch-action: none;
-    user-select: none;
-    border-radius: 10px;
 }
 
 .local-window-w .title-bar {

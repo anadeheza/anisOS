@@ -1,6 +1,21 @@
 let spans;
 let systemEntered = false;
 
+let zCounter = 1000;         
+let openCount = 0;           
+
+function bringToFront(windowId) {
+    zCounter++;
+    const ventana = document.getElementById(windowId);
+    if (ventana) ventana.style.zIndex = zCounter;
+}
+
+function getNextPosition() {
+    const base = 50;
+    const offset = (openCount % 10) * 30; 
+    return { top: base + offset, left: base + offset };
+}
+
 function start() {
     init();
     update();
@@ -105,8 +120,23 @@ updateDateTime();
 
 async function showWeather() {
     const ventana = document.getElementById('window-clima');
+    
+    if (ventana.style.display === 'block') {
+        bringToFront('window-clima');
+        return;
+    }
+
+    if (!ventana.getAttribute('data-x')) {
+        const pos = getNextPosition();
+        openCount++;
+        ventana.style.position = 'fixed';
+        ventana.style.top  = '50px';
+        ventana.style.left = '50px';
+        ventana.style.transform = 'none';
+    }
+
     ventana.style.display = 'block';
-    ventana.style.zIndex = "9999";
+    bringToFront('window-clima');
 
     const content = document.getElementById('weather-content');
     content.innerHTML = "<p>Loading...</p>";
@@ -177,16 +207,20 @@ document.addEventListener('DOMContentLoaded', () => {
             if (sticker.classList.contains('dragging')) return;
 
             const targetId = sticker.getAttribute('data-target');
-            console.log("Intentando abrir:", targetId); 
-            
             const ventana = document.getElementById(targetId);
             
             if (ventana) {
-                ventana.style.display = 'block';
-                ventana.style.zIndex = "9999"; 
+                openWindow(targetId);
             } else {
-                console.error("Ncouldn't find the window with the ID:", targetId);
+                console.error("Couldn't find the window with the ID:", targetId);
             }
+        });
+    });
+
+    // bring window to front 
+    document.querySelectorAll('.local-window, .local-window-w').forEach(win => {
+        win.addEventListener('mousedown', () => {
+            bringToFront(win.id);
         });
     });
 
@@ -201,9 +235,24 @@ function minimizeWindow(windowId) {
 
 function openWindow(windowId) {
     const ventana = document.getElementById(windowId);
-    ventana.style.display = 'block';
-    ventana.style.zIndex = '1000';
 
+    if (ventana.style.display === 'block') {
+        bringToFront(windowId);
+        return;
+    }
+
+    const pos = getNextPosition();
+    openCount++;
+
+    if (!ventana.getAttribute('data-x')) {
+        ventana.style.position = 'fixed';
+        ventana.style.top  = pos.top  + 'px';
+        ventana.style.left = pos.left + 'px';
+        ventana.style.transform = 'none';
+    }
+
+    ventana.style.display = 'block';
+    bringToFront(windowId);
 
     const icon = document.querySelector(`.app[data-target="${windowId}"]`);
     if (icon) icon.classList.add('app-active');
@@ -229,7 +278,6 @@ function openWindow(windowId) {
     if (windowId === 'window-paint') {
         createCanvas();
     }
-
 }
 
 function toggleApp(windowId) {
@@ -267,8 +315,12 @@ window.closeWindow = function(id) {
     if (icon) icon.classList.remove('app-active');
 };
 
-interact('.local-window .title-bar').draggable({
+interact('.local-window .title-bar, .local-window-w .title-bar').draggable({
     listeners: {
+        start(event) {
+            const win = event.target.closest('.local-window, .local-window-w');
+            if (win) bringToFront(win.id);
+        },
         move(event) {
             const target = event.target.parentElement;
 
@@ -296,11 +348,11 @@ function createCanvas() {
     const canvas = document.getElementById('pixel-canvas');
     const colorPicker = document.getElementById('colorPicker');
     
-    // Crear 400 píxeles (20x20)
+    //  400 píxeles (20x20)
     for (let i = 0; i < 720; i++) {
         const pixel = document.createElement('span');
         
-        // Pintar al hacer click o arrastrar
+        // pintar al hacer click o arrastrar
         pixel.addEventListener('mousedown', () => pixel.style.backgroundColor = colorPicker.value);
         pixel.addEventListener('mouseover', (e) => {
             if (e.buttons === 1) pixel.style.backgroundColor = colorPicker.value;
@@ -337,7 +389,7 @@ function calcuInput(val) {
         const parts = calcuExpression.split(/[\+\-\*\/]/);
         const lastNumber = parts[parts.length - 1];
         if (lastNumber.includes('.')) return; // ya tiene punto
-        if (lastNumber === '') calcuExpression += '0'; // caso: operador seguido de punto
+        if (lastNumber === '') calcuExpression += '0'; // operador seguido de punto
     }
 
     if (calcuExpression === '0') calcuExpression = '';
