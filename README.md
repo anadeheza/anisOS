@@ -1,7 +1,7 @@
 # AnisOS
 Made with HTML, CSS and  JavaScript (no, no frameworks or tailwind), this is basically my personal portfolio but make it look like a WebOS (just to be a bit cooler i guess, plus i loved doing the frontend). 
 
-It has draggable windows, a bottom dock with mini apps (spotify, pixel art, a notes/to-do app and a calculator) and stickers you can move around the screen that open different windows. There is also a top bar with the time, date, weather and system info, 
+It has draggable windows, a bottom bar with mini apps (spotify, pixel art, a notes/to-do app and a calculator) and stickers you can move around the screen that open different windows. There is also a top bar with the time, date, weather and system info, 
 
 The bes part, in my opinion, is the reactive mosaic background that lights up when you hover it (and it's pink too!). 
 
